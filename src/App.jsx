@@ -12,17 +12,36 @@ import Cart from './components/Cart/Cart'
 
 function App() {
   const [courses, setCourses] = useState([]);
+  const [credit, setCredit] = useState(0);
+  const [remainingCredit, setRemainingCredit] = useState(20);
+  
+  
 
   const handleSelectButton = course =>{
 
     const isExist = courses.find((item) => item.id == course.id);
+    let credit = course.credit;
     
     if(isExist){
       return alert('This course has already been selected')
     }
     else{
-      const newCourses = [...courses, course];
-      setCourses(newCourses)
+      courses.forEach(course => credit = credit + course.credit);
+      setCredit(credit);
+
+      const newRemainingCredit = 20 - credit;
+      setRemainingCredit(newRemainingCredit);
+
+      if(remainingCredit < 0){
+         return alert('You have used total credit hour.')
+      }
+      else{
+        const newCourses = [...courses, course];
+        setCourses(newCourses)
+
+      }
+
+      
 
     }
     
@@ -38,7 +57,11 @@ function App() {
           <Courses handleSelectButton = {handleSelectButton}></Courses>
         </div>
         <div className='w-1/5'>
-          <Cart courses= {courses}></Cart>
+          <Cart 
+          courses = {courses}
+          credit = {credit}
+          remainingCredit = {remainingCredit}
+          ></Cart>
           
           
          
