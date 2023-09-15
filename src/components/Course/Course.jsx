@@ -8,7 +8,7 @@ const Course = ({course, handleSelectButton}) => {
     return (
        
        
-        <div className="bg-base-100 shadow-xl p-5">
+        <div className="bg-base-100 shadow-xl p-2">
             <figure>
                 <img src={img} alt="" className="rounded-xl w-full" />
             </figure>

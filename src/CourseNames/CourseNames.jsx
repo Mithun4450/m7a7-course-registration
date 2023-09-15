@@ -10,7 +10,7 @@ const CourseNames = ({courses}) => {
         <div>
             
             {
-                courses.map((course, idx) => <li className='text-left' key={idx} >{course.course_title}</li>)
+                courses.map((course, idx) => <li className='text-left text-sm' key={idx} >{course.course_title}</li>)
                
 
             }

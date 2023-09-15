@@ -14,28 +14,36 @@ function App() {
   const [courses, setCourses] = useState([]);
   const [credit, setCredit] = useState(0);
   const [remainingCredit, setRemainingCredit] = useState(20);
+  const [totalPrice, setTotalPrice] = useState(0);
   
   
 
   const handleSelectButton = course =>{
 
     const isExist = courses.find((item) => item.id == course.id);
+
     let credit = course.credit;
+    let price = course.price;
     
     if(isExist){
-      return alert('This course has already been selected')
+      return alert('This course has already been selected.')
     }
     else{
       courses.forEach(course => credit = credit + course.credit);
-      setCredit(credit);
+
+      courses.forEach(course => price = price + course.price);
+      
 
       const newRemainingCredit = 20 - credit;
-      setRemainingCredit(newRemainingCredit);
+      
 
-      if(remainingCredit < 0){
-         return alert('You have used total credit hour.')
+      if(credit >= 20){
+         return alert('Crossing total credit hours, this course can not be selected .')
       }
       else{
+        setCredit(credit);
+        setRemainingCredit(newRemainingCredit);
+        setTotalPrice(price);
         const newCourses = [...courses, course];
         setCourses(newCourses)
 
@@ -50,9 +58,9 @@ function App() {
 
   return (
     <>
-      <Header></Header>
+      <Header ></Header>
 
-      <div className='flex gap-5'>
+      <div className='flex gap-5 mt-12'>
         <div className='w-4/5'>
           <Courses handleSelectButton = {handleSelectButton}></Courses>
         </div>
@@ -61,6 +69,7 @@ function App() {
           courses = {courses}
           credit = {credit}
           remainingCredit = {remainingCredit}
+          totalPrice = {totalPrice}
           ></Cart>
           
           
