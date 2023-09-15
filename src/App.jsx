@@ -60,11 +60,11 @@ function App() {
     <>
       <Header ></Header>
 
-      <div className='flex gap-5 mt-12'>
-        <div className='w-4/5'>
+      <div className='flex flex-col-reverse md:flex-col-reverse lg:flex-row gap-5 mt-12'>
+        <div className='lg:w-4/5 '>
           <Courses handleSelectButton = {handleSelectButton}></Courses>
         </div>
-        <div className='w-1/5'>
+        <div className='lg:w-1/5 '>
           <Cart 
           courses = {courses}
           credit = {credit}
