@@ -4,9 +4,8 @@ import './App.css'
 import Courses from './components/Courses/Courses'
 import Header from './components/Header/Header'
 import Cart from './components/Cart/Cart'
-
-
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -26,7 +25,17 @@ function App() {
     let price = course.price;
     
     if(isExist){
-      return alert('This course has already been selected.')
+      return toast('This course has already been selected.', {
+        position:'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+      
     }
     else{
       courses.forEach(course => credit = credit + course.credit);
@@ -37,8 +46,18 @@ function App() {
       const newRemainingCredit = 20 - credit;
       
 
-      if(credit >= 20){
-         return alert('Crossing total credit hours, this course can not be selected .')
+      if(credit > 20){
+         return toast('Crossing total credit hours, this course can not be selected ', {
+          position:'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+        
       }
       else{
         setCredit(credit);
@@ -59,6 +78,7 @@ function App() {
   return (
     <>
       <Header ></Header>
+      <ToastContainer></ToastContainer>
 
       <div className='flex flex-col-reverse md:flex-col-reverse lg:flex-row gap-5 mt-12'>
         <div className='lg:w-4/5 '>
@@ -77,6 +97,8 @@ function App() {
         </div>
         
       </div>
+
+      
       
       
     </>
